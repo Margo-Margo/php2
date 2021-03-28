@@ -1,0 +1,61 @@
+{% extends "base.twig" %}
+
+{% block header %}
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand click" href="index.php"> <img src="img/content/online-shop.png" width="50" height="50" class="d-inline-block align-top" alt=""
+														   loading="lazy"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="menu">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="index.php?class=homepage&method=viewHomepage">Главная
+							<span class="sr-only">(current)</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="index.php?class=catalog&method=viewCatalog">Каталог</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="index.php?class=guestbook&method=viewGuestbook">Отзывы</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="index.php?class=contacts&method=viewContacts">Контакты</a>
+					</li>
+
+					{% if user == true %}
+					<li class="nav-item">
+						<a class="nav-link" href="index.php?class=user&method=getUser">Личный кабинет</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="index.php?class=user&method=logout">Выйти ({{user}})</a>
+					</li>
+					{% endif %}
+					{% if user == false %}
+						<li class="nav-item">
+							<a class="nav-link" href="index.php?class=user&method=login">Войти</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="index.php?class=user&method=regUser">Регистрация</a>
+						</li>
+					{% endif %}
+					<li class="nav-item">
+						<a class="btn btn-outline-warning my-2 my-sm-0 cart-button click" href="index.php?class=product&method=viewBasket">Корзина</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+{% endblock %}
+{% block body %}
+	<div id="body">
+	    {{text}}
+	</div>
+{% endblock %}
+        
+{% block footer %}
+	{{ parent() }}
+{% endblock %}
