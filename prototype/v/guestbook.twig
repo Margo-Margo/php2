@@ -1,0 +1,50 @@
+{% extends "main.twig" %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+{% block body %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-2">
+                <h1>WebShop</h1>
+                {% if userid == NULL %}
+                    <h4 class="my-4">Демо режим</h4>
+                    <h6 class="my-4">Для оформления заказа</h6>
+                    <h6 class="my-4">Войдите под своим аккаунтом</h6>
+                {% else %}
+                    <h4 class="my-4">Обычный режим</h4>
+                    <h6 class="my-4">Обычный аккаунт</h6>
+                {% endif %}
+            </div>
+            <div class="col-lg-10 pl-5 pr-5">
+                <h1 class="text-lg-center mb-4">{{ title }}</h1>
+                <div>
+
+                    {% for coment in coments %}
+                <div style='border: 1px solid #ced4da; border-radius: 0.25rem; margin: 10px; padding: 10px; text-align: left;'>ФИО: {{coment.fio}}<br>Email: {{coment.email}}<br>Текст: {{coment.text}}<br><i>Дата: {{coment.date}}</i></div>
+                    {% endfor %}
+
+                    <div style="display: inline-block;" class="form-group col-md-12 mt-5">
+                    <form  method="post">
+                        <h3><strong>Оставить свой отзыв:</strong></h3><br>
+                        <p>Введите ФИО: <input class="form-control py-3 mt-2" type="text" name="fio" maxlength="30" required></p>
+                        <p>Введите Email: <input class="form-control py-3 mt-2" type="email" name="email" maxlength="20" required></p>
+                        <p>Введите Текст: <textarea class="form-control py-3 mt-2" type="text" name="text" rows="7" required></textarea></p>
+                        <p><input class="btn btn-warning mt-3 click" style="width: 282px;" type="submit" name="submit"></p>
+                    </form>
+                </div>
+                </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+{% endblock %}
+
+
+

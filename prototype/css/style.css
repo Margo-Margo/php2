@@ -1,0 +1,57 @@
+.up__btn {
+    display: block;
+    width:60px;
+    height: 60px;
+    border: none;
+    background:#ffc107;
+    text-align:center;
+    position:fixed;
+    z-index: 1000;
+    bottom:50px;
+    right:50px;
+    padding: 5px;
+    cursor:pointer;
+    border-radius: 50%;
+    transition: all 0.5s;
+}
+
+.up__btn:hover {
+    transform: scale(0.96);
+    background-color: #ffc110;
+    transition: all 0.5s;
+}
+
+.web-icon {
+    fill: #555555;
+    margin: 0 0 15px 0;
+}
+
+
+.up__btn .web-icon:hover {
+    fill: #fff;
+    transition: all 0.5s;
+}
+
+.click {
+    transition: all 0.5s;
+}
+
+.click:hover {
+    transform: scale(0.96);
+    transition: all 0.5s;
+}
+
+.pagination-link {
+    display: block;
+    width: 10px !important;
+    min-height: 10px;
+    margin: 5px;
+    background-color: #000 !important;
+    border-radius: 50%;
+
+}
+
+.pagination-link:hover {
+    background-color: transparent;
+    transition: all 0.7s;
+}

@@ -1,0 +1,70 @@
+{% extends "main.twig" %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+{% block body %}
+<div class="container mt-5">
+    <div class="row">
+
+        <div class="col-lg-2">
+            <h1>WebShop</h1>
+            {% if userid == NULL %}
+                <h4 class="my-4">Демо режим</h4>
+                <h6 class="my-4">Для оформления заказа</h6>
+                <h6 class="my-4">Войдите под своим аккаунтом</h6>
+            {% else %}
+                <h4 class="my-4">Обычный режим</h4>
+                <h6 class="my-4">Обычный аккаунт</h6>
+            {% endif %}
+        </div>
+    <div class="col-lg-10 ">
+        <h1 class="text-lg-center">{{ title }}</h1>
+    <div class="d-flex flex-wrap justify-content-around mt-4">
+        {% for product in products %}
+            <div class="item card border-secondary p-4 m-2" style="width: 18rem;">
+
+                    <a href="index.php?class=product&method=viewItem&id={{product.id}}"><img class="card-img-top" src="{{"img/products/small/" ~ product.id ~ ".jpg"}}" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">{{product.title}}</h4>
+                        {% if      product.reviews_score == 0 %}
+                            {% set score = "☆ ☆ ☆ ☆ ☆" %}
+                        {% elseif  product.reviews_score == 1 %}
+                            {% set score = "★ ☆ ☆ ☆ ☆" %}
+                        {% elseif  product.reviews_score == 2 %}
+                            {% set score = "★ ★ ☆ ☆ ☆" %}
+                        {% elseif  product.reviews_score == 3 %}
+                            {% set score = "★ ★ ★ ☆ ☆" %}
+                        {% elseif  product.reviews_score == 4 %}
+                            {% set score = "★ ★ ★ ★ ☆" %}
+                        {% elseif  product.reviews_score == 5 %}
+                            {% set score = "★ ★ ★ ★ ★" %}
+                        {% endif %}
+
+                            <span class="text-warning">{{score}}</span>
+
+
+                        <h4 class="card-title">{{product.price}} руб.</h4>
+                        <p>{{product.short_description}}</p>
+                        <br>
+                        <form method="post" action="index.php?class=product&method=addToCart&id={{product.id}}">
+                            <input type="hidden" name="quantity" value="1"/>
+                            <input type="hidden" name="hidden_name" value="{{product.title}}" />
+                            <input type="hidden" name="hidden_price" value="{{product.price}}" />
+                            <input type="hidden" name="hidden_id" value="{{product.id}}" />
+                            <input type="submit" name="add_to_cart" value="Купить" class="btn btn-block btn-warning click" />
+                        </form>
+                    </div>
+
+            </div>
+        {% endfor %}
+        <div class="d-flex justify-content-around" style="width: 100%;"><span class="d-block mt-5"> <a style="width: 272px;"  class="btn  btn-outline-dark click" href="?class=catalog&method=viewCatalog&limit={{count + 3}}" id="show_more">Показать еще</a></span><span class="d-block mt-5"> <a style="width: 272px;"  class="btn  btn-outline-dark click"class="btn  btn-outline-dark click" href="?class=catalog&method=viewCatalog">Скрыть все</a></span></div>
+    </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+{% endblock %}
+
+
+
